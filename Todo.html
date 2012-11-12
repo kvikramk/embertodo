@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <title>To do List</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="todo.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"></script>
+        <script src="todo.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="header">Ember Todo Application</h1>
+        <script type="text/x-handlebars">
+            <div id="frm">
+                <div class="input-append">
+                {{view App.SearchTextField placeholder="Item to do" valueBinding="App.todoController.item"}}
+                <button class="btn btn-success" {{action "addItems" target="App.todoController"}} >Add Item</button>
+                </div>
+            </div>
+            <div id="content">
+                <div id="items">
+                    <ol>
+                        {{#each App.todoController}}
+                        <li>
+                            <a href="#" title="">{{this}}</a>
+                            <a href="#" title="remove" {{action "removeItems" target="App.todoController"}}><i class="icon-remove"></i></a>
+                               
+                        </li>
+                        {{/each}}
+                    </ol>
+                </div>
+            </div>
+        </script>
+        </div>
+    </body>
+</html>
