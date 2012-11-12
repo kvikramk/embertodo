@@ -20,7 +20,14 @@ App.SearchTextField=Em.TextField.extend({
         App.todoController.addItems();
     }
 });
+App.StatsView = Em.View.extend({
+  remainingBinding: 'App.todoController.remainingItems',
 
+  remainingString: function() {
+    var remaining = this.get('remaining');
+    return remaining + (remaining === 1 ? " item" : " items");
+  }.property('remaining')
+});
 /**************************
 * Controllers
 **************************/
@@ -39,6 +46,9 @@ App.todoController=Em.ArrayController.create({
     removeItems:function(view){
         this.removeObject(view.context);
     },
+    remainingItems:function(){
+        return this.filterProperty('isDone', false).get('length');
+    }.property('@each.isDone'),
     clearItemsdone:function(){
         this.filterProperty('isDone', true).forEach(this.removeObject, this);
     }

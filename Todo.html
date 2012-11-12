@@ -20,6 +20,9 @@
                 </div>
             </div>
             <div id="content">
+                <h4>{{#view App.StatsView id="stats"}}
+    {{remainingString}} remaining
+  {{/view}}</h4>
                 <div id="items">
                     <ol>
                         {{#each App.todoController}}
