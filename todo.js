@@ -7,7 +7,10 @@ App=Em.Application.create();
 /**************************
 * Models
 **************************/
-
+App.Todo=Em.Object.extend({
+    title:null,
+    isDone:false
+});
 /**************************
 * Views
 **************************/
@@ -29,10 +32,14 @@ App.todoController=Em.ArrayController.create({
         var me=this,
         item=me.get('item');
         if(item){
-            this.pushObject(item);
+            var newOb=App.Todo.create({title:item});
+            this.pushObject(newOb);
         }
     },
     removeItems:function(view){
         this.removeObject(view.context);
+    },
+    clearItemsdone:function(){
+        this.filterProperty('isDone', true).forEach(this.removeObject, this);
     }
 });

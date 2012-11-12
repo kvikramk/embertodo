@@ -16,6 +16,7 @@
                 <div class="input-append">
                 {{view App.SearchTextField placeholder="Item to do" valueBinding="App.todoController.item"}}
                 <button class="btn btn-success" {{action "addItems" target="App.todoController"}} >Add Item</button>
+                <button class="btn btn-info" {{action "clearItemsdone" target="App.todoController"}}>Clear Items completed</button>
                 </div>
             </div>
             <div id="content">
@@ -23,9 +24,10 @@
                     <ol>
                         {{#each App.todoController}}
                         <li>
-                            <a href="#" title="">{{this}}</a>
-                            <a href="#" title="remove" {{action "removeItems" target="App.todoController"}}><i class="icon-remove"></i></a>
-                               
+                            <div class="input-append">
+                            {{view Em.Checkbox titleBinding="title" valueBinding="isDone"}}
+                            </div>
+                            
                         </li>
                         {{/each}}
                     </ol>
